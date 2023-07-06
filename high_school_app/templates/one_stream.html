@@ -1,0 +1,11 @@
+
+
+    <h1>{{ one_stream.stream_name }}</h1>
+
+    {% for student in students %}
+        {% if one_stream == student.stream %}
+        <p>
+            <a href="{% url 'high_school_app:student' id=student.id %}">{{ student }}</a>
+        </p>
+        {% endif %}
+    {% endfor %}

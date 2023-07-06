@@ -1,0 +1,10 @@
+<div>
+    {% for s in students %}
+        <p>
+            <a href="{% url 'high_school_app:student' id=s.id %}">{{ s.name }}</a>
+            <span>{{ s.stream.stream_name }}</span>
+        </p>
+        <p>
+
+    {% endfor %}
+</div>
