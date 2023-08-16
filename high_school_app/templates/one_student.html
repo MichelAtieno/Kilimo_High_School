@@ -1,3 +1,9 @@
-<h1>{{ one_student.name }}</h1>
 
-<a href="{% url 'high_school_app:edit_student' %}">Edit Student Profile</a></li>
+<div>
+
+    <p>{{ one_student.name }}</p>
+    <p>{{ one_student.stream }}</p>
+    <a href="{% url 'high_school_app:edit_student' id=one_student.id %}">Edit Student Profile</a>
+    <a href="{% url 'high_school_app:delete_student' id=one_student.id %}">Delete Student Profile</a>
+
+</div>

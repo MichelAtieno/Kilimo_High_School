@@ -45,23 +45,23 @@ def one_student(request, id):
 
     return render(request, "one_student.html", context)
 
-def edit_student(request):
-    if request.method == "POST":
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            student = form.save(commit=False)
-            student.name = student.name
-            student.stream = student.stream
-            student.save()
-            return redirect('high_school_app:student', id=student.id)
-    
-    else:
-        form = StudentForm()
+def edit_student(request, id):
+    student = Student.objects.get(id=id)
+    form = StudentForm(request.POST or None, instance=student)
+    if form.is_valid():
+        form.save()
+        return redirect('high_school_app:student', id=student.id)
 
     context = {
         "form" : form,
-        # "student": student
+        "student": student
     }
 
     return render(request, 'edit_student.html', context)
+
+def delete_student(request, id):
+    student = Student.objects.get(id=id)
+    student.delete()
+    
+    return redirect('high_school_app:all_students')
 
